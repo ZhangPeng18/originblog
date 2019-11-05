@@ -14,7 +14,7 @@ def register_command(app):
 
         生成测试数据时将删除所有并重新创建数据库中的表
         """
-        from originblog.fake import fake_admin, fake_comment, fake_post, fake_widget
+        from .fake import fake_admin, fake_comment, fake_post, fake_widget
 
         db = connect('originblog')
         db.drop_database('originblog')
