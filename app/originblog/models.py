@@ -12,9 +12,9 @@ from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from unidecode import unidecode
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from originblog.extensions import db
-from originblog.settings import BlogSettings
-from originblog.settings import Operations
+from .extensions import db
+from .settings import BlogSettings
+from .settings import Operations
 
 # 获取博客配置
 COMMENT_STATUS = BlogSettings.COMMENT_STATUS

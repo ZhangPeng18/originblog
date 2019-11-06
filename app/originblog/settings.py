@@ -1,5 +1,5 @@
 import os
-from originblog.utils import get_boolean_from_env, get_int_from_env
+from .utils import get_boolean_from_env, get_int_from_env
 
 
 class BlogSettings:

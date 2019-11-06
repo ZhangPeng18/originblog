@@ -6,14 +6,14 @@ from flask import Flask, render_template
 from flask_login import current_user
 from flask_wtf.csrf import CSRFError
 
-from originblog.blueprints.admin.views import admin_bp
-from originblog.blueprints.auth import auth_bp
-from originblog.blueprints.blog import blog_bp
-from originblog.blueprints.user import user_bp
-from originblog.commands import register_command
-from originblog.extensions import db, mail, moment, bootstrap, login_manager, csrf
-from originblog.models import User, Comment, Post
-from originblog.settings import config, BlogSettings
+from .blueprints.admin.views import admin_bp
+from .blueprints.auth import auth_bp
+from .blueprints.blog import blog_bp
+from .blueprints.user import user_bp
+from .commands import register_command
+from .extensions import db, mail, moment, bootstrap, login_manager, csrf
+from .models import User, Comment, Post
+from .settings import config, BlogSettings
 
 
 def create_app(config_name=None):

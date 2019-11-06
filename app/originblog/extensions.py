@@ -21,7 +21,7 @@ def load_user(username):
         :param username: unicode ID
         :return: 用户对象或None
         """
-    from originblog.models import User
+    from .models import User
     try:
         user = User.objects.get(username=username)
     except DoesNotExist:
