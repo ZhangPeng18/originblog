@@ -3,7 +3,7 @@ from functools import wraps
 from flask import abort, flash, url_for, Markup
 from flask_login import current_user
 
-from originblog.utils import redirect_back
+from .utils import redirect_back
 
 
 def permission_required(permission):

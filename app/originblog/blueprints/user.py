@@ -1,10 +1,10 @@
 from flask import Blueprint, render_template, url_for, request, flash, redirect, current_app
 from flask_login import login_required, fresh_login_required, current_user
 
-from originblog.emails import send_change_email_email
-from originblog.forms.user import ProfileForm, ChangePasswordForm, ChangeEmailForm, DeleteAccountForm
-from originblog.models import User, Post
-from originblog.settings import Operations
+from ..emails import send_change_email_email
+from ..forms.user import ProfileForm, ChangePasswordForm, ChangeEmailForm, DeleteAccountForm
+from ..models import User, Post
+from ..settings import Operations
 
 user_bp = Blueprint('user', __name__)
 
