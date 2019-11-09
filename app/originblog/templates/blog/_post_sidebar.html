@@ -1,15 +1,15 @@
 <div class="col-lg-3 col-md-2">
     {% if current_user.is_admin %}
     <div class="sidebar-header">
-        <a class="btn btn-info btn-sm" href="{{ url_for('admin.post', slug=post.slug) }}">Edit</a>
+        <a class="btn btn-info btn-sm" href="{{ url_for('admin.post', slug=post.slug) }}">编辑</a>
         <button data-id="{{ post.id }}" data-href="{{ url_for('admin.post', slug=post.slug) }}"
                 data-toggle="modal" data-target="#delete-post"
-                class="btn btn-danger btn-sm d-inline" type="button">Delete
+                class="btn btn-danger btn-sm d-inline" type="button">删除
         </button>
     </div>
     {% endif %}
 
-    <h3>Search</h3>
+    <h3>搜索</h3>
     <hr>
     <form id="search-form" action="{{ url_for('blog.index') }}">
         <div class="form-group">
@@ -17,14 +17,14 @@
                 <div class="input-group-prepend">
                     <button type="submit" class="input-group-text fas fa-search"></button>
                 </div>
-                <input type="text" class="form-control" id="search" name="keywords" placeholder="search"
+                <input type="text" class="form-control" id="search" name="keywords" placeholder="关键字"
                 value="{% if cur_keywords %}{{ cur_keywords }}{% endif %}">
             </div>
         </div>
     </form>
     <br>
 
-    <h3>Tags</h3>
+    <h3>标签</h3>
     <hr>
     {% if tags %}
     <div>
@@ -44,7 +44,7 @@
     {% endif %}
     <br>
 
-    <h3>Category</h3>
+    <h3>分类</h3>
     <hr>
     <div class="list-group">
         {% for category in categories %}
@@ -74,7 +74,7 @@
 
     <!-- Table of Content-->
     <div class="post-toc d-none d-lg-block">
-        <h3>Table of Content</h3>
+        <h3>目录</h3>
         <hr>
         <div class="toc-list">
             <ol id="toc" data-toc="#main-content" data-toc-headings="h2,h3,h4"></ol>

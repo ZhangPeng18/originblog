@@ -8,12 +8,12 @@ class BlogSettings:
     GRAVATAR_DEFAULT_IMAGE = 'retro'
     COMMENT_STATUS = ('approved', 'pending', 'spam', 'deleted')  # TODO:评论的删除方式
     BLOG_META = {
-        'name': os.getenv('name', 'Origin Blog'),
-        'subtitle': os.getenv('subtitle', 'Concentration and Perseverance matter.'),
+        'name': os.getenv('name', 'Rokfly Blog'),
+        'subtitle': os.getenv('subtitle', '保持初心，坚持自己的梦想，路将会走的更远'),
         'description': os.getenv('description', 'Origin Blog Description'),
         'owner': os.getenv('owner', 'Waynerv'),
         'keywords': os.getenv('keywords', 'python,flask,web,MongoDB'),
-        'index_nav1': 'About',
+        'index_nav1': None,
         'index_nav2': None,
         'bg_home': os.getenv('bg_home', '../../static/img/home-bg.webp'),
         'bg_post': os.getenv('bg_post', '../../static/img/post-bg.webp'),

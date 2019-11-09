@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} Author | {{ user.name }} {% endblock %}
+{% block title %} 作者 | {{ user.name }} {% endblock %}
 
 {% block header %}
     <header class="masthead" style="background-image: url({{ blog_meta.bg_about }})">
@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="page-heading">
-                        <h1>About Author</h1>
+                        <h1>关于作者</h1>
                         <hr class="small">
                         <span class="subheading">{{ blog_meta.subtitle }}</span>
                     </div>
@@ -23,18 +23,18 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
-                <h3>About {{ user.name }}</h3>
+                <h3>关于 {{ user.name }}</h3>
                 <hr>
                 <dl>
-                    <dt>Username:</dt>
+                    <dt>用户名:</dt>
                     <dd>{{ user.username }}</dd>
                 </dl>
                 <dl>
-                    <dt>Bio:</dt>
+                    <dt>简介:</dt>
                     <dd>{{ user.bio }}</dd>
                 </dl>
                 <dl>
-                    <dt>Social Network:</dt>
+                    <dt>社交:</dt>
                     <dd>
                         {% if user.social_networks['github']['url'] %}
                             <a href='{{ user.social_networks["github"]["url"] }}'><i class="fab fa-github fa-lg"></i></a>
@@ -65,12 +65,12 @@
                     </dd>
                 </dl>
                 <dl>
-                    <dt>Homepage:</dt>
+                    <dt>主页:</dt>
                     <dd>
                         {% if user.homepage %}
                             <a href="{{ user.homepage }}"><i class="fas fa-home"></i>{{ user.homepage }}</a>
                         {% else %}
-                            Not provided.
+                            没有填写.
                         {% endif %}
                     </dd>
                 </dl>
@@ -79,7 +79,7 @@
 
         <div class="row mt-2">
             <div class="col-lg-8 col-md-10 mx-auto" id="article">
-                <h3>Articles</h3>
+                <h3>文章</h3>
                 <hr>
                 <ul>
                     {% for post in pagination.items %}
@@ -88,7 +88,7 @@
                                 <a href="{{ url_for('blog.show_post', slug=post.slug) }}">{{ post.title }}</a>
                             </li>
                         {% else %}
-                            <p class="post-subtitle">No articles found here</p>
+                            <p class="post-subtitle">没有文章</p>
                         {% endif %}
                     {% endfor %}
                 </ul>
@@ -96,12 +96,12 @@
                 <div class="clearfix">
                     {% if pagination.has_next %}
                         <a class="btn btn-primary float-right ml-2"
-                           href="{{ url_for('user.index', username=user.username, page=pagination.next_num) }}#article">Older Posts &rarr;
+                           href="{{ url_for('user.index', username=user.username, page=pagination.next_num) }}#article">更早发布 &rarr;
                         </a>
                     {% endif %}
                     {% if pagination.has_prev %}
                         <a class="btn btn-primary float-right"
-                           href="{{ url_for('user.index', username=user.username, page=pagination.prev_num) }}#article">Previous Posts
+                           href="{{ url_for('user.index', username=user.username, page=pagination.prev_num) }}#article">回到
                         </a>
                     {% endif %}
                 </div>

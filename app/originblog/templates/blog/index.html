@@ -2,7 +2,7 @@
 {% from 'bootstrap/pagination.html' import render_pagination %}
 {% from 'macros.html' import render_entire_pagination %}
 
-{% block title %}Home{% endblock %}
+{% block title %}首页{% endblock %}
 
 {% block header %}
     <header class="masthead" style="background-image: url({{ blog_meta.bg_home }})">
@@ -35,13 +35,16 @@
                         <p class="post-subtitle">
                             {{ post.abstract|striptags|truncate }}
                         </p>
-                        <p class="post-meta">Posted by
+                        <p class="post-meta">
                             <a href="{{ url_for('user.index', username=post.author.username) }}">{{ post.author.name }}</a>
-                            on {{ moment(post.pub_time).format('YYYY/MM/DD, h:mm a') }}</p>
-                        <p class="post-meta">category: <a
+                            于
+                            {{ moment(post.pub_time).fromNow() }}
+                            提交
+                        </p>
+                        <p class="post-meta">分类: <a
                                 href="{{ url_for('blog.index', category=post.category) }}">{{ post.category }}</a>
                         </p>
-                        <p class="post-meta">Tags:
+                        <p class="post-meta">标签:
                             {% for tag in post.tags %}
                                 <a href="{{ url_for('blog.index', tag=tag) }}">{{ tag }}</a>{% endfor %}
                         </p>
@@ -51,7 +54,7 @@
                     {% endif %}
                 {% else %}
                     <P class="post-subtitle">
-                        No articles found here
+                        这里没有文章
                     </P>
                 {% endif %}
             {% endfor %}
@@ -62,14 +65,14 @@
                 <a class="btn btn-primary float-right ml-2" href="{{ url_for('blog.index', page=pagination.next_num) }}
                     {%- if cur_category %}&category={{ cur_category }}{% endif %}
                     {%- if cur_keywords %}&keywords={{ cur_keywords }}{% endif %}
-                    {%- if cur_tag %}&tag={{ cur_tag }}{% endif %}">Older Posts &rarr;
+                    {%- if cur_tag %}&tag={{ cur_tag }}{% endif %}">更多 &rarr;
                 </a>
                 {% endif %}
                 {% if pagination.has_prev %}
                 <a class="btn btn-primary float-right" href="{{ url_for('blog.index', page=pagination.prev_num) }}
                     {%- if cur_category %}&category={{ cur_category }}{% endif %}
                     {%- if cur_keywords %}&keywords={{ cur_keywords }}{% endif %}
-                    {%- if cur_tag %}&tag={{ cur_tag }}{% endif %}">Previous Posts
+                    {%- if cur_tag %}&tag={{ cur_tag }}{% endif %}">之前
                 </a>
                 {% endif %}
             </div>

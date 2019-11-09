@@ -1,16 +1,17 @@
 from flask import Blueprint, render_template, request, current_app, redirect, url_for, flash, make_response
-from flask_login import current_user
+from flask_login import login_required, fresh_login_required, current_user
 from mongoengine.queryset.visitor import Q
 
-from originblog.forms.blog import CommentForm, UserCommentForm
-from originblog.models import Post, Comment, Widget
-from originblog.signals import post_visited
-from originblog.utils import redirect_back, reply_filter
+from ..forms.blog import CommentForm, UserCommentForm
+from ..models import Post, Comment, Widget
+from ..signals import post_visited
+from ..utils import redirect_back, reply_filter
 
 blog_bp = Blueprint('blog', __name__)
 
 
 @blog_bp.route('/')
+@login_required
 def index():
     """构建博客首页
 
@@ -48,6 +49,7 @@ def index():
 
 
 @blog_bp.route('/posts/<slug>', methods=['GET', 'POST'])
+@login_required
 def show_post(slug, post_type='post'):
     """显示文章正文、评论列表与评论表单并处理表单提交。
 
@@ -141,6 +143,7 @@ def reply_comment(pk, post_type):
 
 
 @blog_bp.route('/archive')
+@login_required
 def archive():
     """按时间归档文章"""
     posts = Post.objects.filter(type='post').order_by('-pub_time').only('title', 'slug', 'pub_time')

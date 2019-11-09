@@ -25,7 +25,7 @@
     <meta name="sogou_site_verification" content="{{ blog_meta.sogou_site_verification }}"/>
     <meta name="qihu-site-verification" content="{{ blog_meta.qihu_site_verification }}"/>
 
-    <title>Origin Blog - {% block title %}{% endblock %}</title>
+    <title>Rokfly Blog - {% block title %}{% endblock %}</title>
 
     <link rel="icon" type="image/png" sizes="96x96" href="{{ url_for('static', filename='img/favicon-96x96.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='img/favicon-32x32.png') }}">
@@ -48,22 +48,23 @@
 <body>
 
     <!-- Navigation -->
+    {% block navigation %}
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container">
             <a class="navbar-brand" href="{{ url_for('blog.index') }}">{{ blog_meta.name }}</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                     data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                     aria-label="Toggle navigation">
-                Menu
+                菜单
                 <i class="fas fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('blog.index') }}">Home</a>
+                        <a class="nav-link" href="{{ url_for('blog.index') }}">主页</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('blog.archive') }}">Archive</a>
+                        <a class="nav-link" href="{{ url_for('blog.archive') }}">归档</a>
                     </li>
                     {% if blog_meta.index_nav1 %}
                     <li class="nav-item">
@@ -77,38 +78,38 @@
                     {% endif %}
                     {% if not current_user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('auth.register') }}">Register</a>
+                            <a class="nav-link" href="{{ url_for('auth.register') }}">注册</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('auth.login', next=request.full_path) }}">Sign in</a>
+                            <a class="nav-link" href="{{ url_for('auth.login', next=request.full_path) }}">登录</a>
                         </li>
                     {% else %}
                         <li class="dropdown nav-item">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-expanded="false">
-                                User
+                                用户
                                 <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                <h6 class="dropdown-header">Logged in as {{ current_user.username }}</h6>
+                                <h6 class="dropdown-header">{{ current_user.username }}</h6>
                                 <a class="dropdown-item" href="{{ url_for('user.index', username=current_user.username) }}">
-                                    <span class="fas fa-fw fa-user"></span> Profile
+                                    <span class="fas fa-fw fa-user"></span> 个人
                                 </a>
                                 <a class="dropdown-item" href="{{ url_for('user.edit_profile') }}">
-                                    <span class="fas fa-fw fa-cog"></span> Settings
+                                    <span class="fas fa-fw fa-cog"></span> 设置
                                 </a>
                                 {% if current_user.can('POST') %}
                                     <a class="dropdown-item" href="{{ url_for('admin.index') }}">
-                                        <span class="fas fa-fw fa-tachometer-alt"></span> Dashboard
+                                        <span class="fas fa-fw fa-tachometer-alt"></span> 管理
                                     </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ url_for('admin.new_post') }}">
-                                        <span class="fas fa-fw fa-pen"></span> New Post
+                                        <span class="fas fa-fw fa-pen"></span> 发布
                                     </a>
                                 {% endif %}
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ url_for('auth.logout') }}">
-                                    <span class="fas fa-fw fa-sign-out-alt"></span> Logout
+                                    <span class="fas fa-fw fa-sign-out-alt"></span> 退出
                                 </a>
                             </div>
                         </li>
@@ -117,6 +118,7 @@
             </div>
         </div>
     </nav>
+    {% endblock %}
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
@@ -156,33 +158,34 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
-                    <ul class="list-inline text-center">
-                        <li class="list-inline-item">
-                            <a href="mailto:ampedee@gmail.com">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fas fa-circle fa-stack-2x"></i>
-                                    <i class="fab fa-google fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="https://github.com/waynerv">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fas fa-circle fa-stack-2x"></i>
-                                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="https://weibo.com/u/2198233840/home?wvr=5&lf=reg">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fas fa-circle fa-stack-2x"></i>
-                                    <i class="fab fa-weibo fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                    <p class="copyright text-muted">Copyright &copy; Origin Blog 2019</p>
+{#                    <ul class="list-inline text-center">#}
+{#                        <li class="list-inline-item">#}
+{#                            <a href="mailto:ampedee@gmail.com">#}
+{#                                <span class="fa-stack fa-lg">#}
+{#                                    <i class="fas fa-circle fa-stack-2x"></i>#}
+{#                                    <i class="fab fa-google fa-stack-1x fa-inverse"></i>#}
+{#                                </span>#}
+{#                            </a>#}
+{#                        </li>#}
+{#                        <li class="list-inline-item">#}
+{#                            <a href="https://github.com/waynerv">#}
+{#                                <span class="fa-stack fa-lg">#}
+{#                                    <i class="fas fa-circle fa-stack-2x"></i>#}
+{#                                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>#}
+{#                                </span>#}
+{#                            </a>#}
+{#                        </li>#}
+{#                        <li class="list-inline-item">#}
+{#                            <a href="https://weibo.com/u/2198233840/home?wvr=5&lf=reg">#}
+{#                                <span class="fa-stack fa-lg">#}
+{#                                    <i class="fas fa-circle fa-stack-2x"></i>#}
+{#                                    <i class="fab fa-weibo fa-stack-1x fa-inverse"></i>#}
+{#                                </span>#}
+{#                            </a>#}
+{#                        </li>#}
+{#                    </ul>#}
+                    <p class="copyright text-muted">Copyright©2019 ZhangPeng. All Rights Reserved.</p>
+                    <p class="copyright text-muted">蜀ICP备19002355号-2</p>
                 </div>
             </div>
         </div>
@@ -195,10 +198,11 @@
 
     <!-- Custom scripts for this template -->
     {{ moment.include_moment(local_js="https://lib.baomitu.com/moment.js/2.24.0/moment-with-locales.min.js") }}
+    {{ moment.locale('zh-cn') }}
     <script src="{{ url_for('static', filename='js/clean-blog.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-
-    {% block scripts %}{% endblock %}
+    {% block scripts %}
+    {% endblock %}
 </body>
 
 </html>

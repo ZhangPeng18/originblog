@@ -2,7 +2,7 @@ import random
 
 from faker import Faker
 
-from originblog.models import User, Post, Comment, Widget, Role
+from .models import User, Post, Comment, Widget, Role
 
 fake = Faker('zh_CN')
 

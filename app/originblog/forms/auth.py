@@ -2,15 +2,15 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, ValidationError
 from wtforms.validators import DataRequired, Length, Email, Regexp, EqualTo
 
-from originblog.models import User
+from ..models import User
 
 
 class LoginForm(FlaskForm):
     """定义登录表单"""
-    username = StringField('Username', validators=[DataRequired(), Length(1, 20)])
-    password = PasswordField('Password', validators=[DataRequired(), Length(6, 128)])
-    remember = BooleanField('Remember me')
-    submit = SubmitField('Sign in')
+    username = StringField('用户名', validators=[DataRequired(), Length(1, 20)])
+    password = PasswordField('密码', validators=[DataRequired(), Length(6, 128)])
+    remember = BooleanField('记住我')
+    submit = SubmitField('登录')
 
 
 class RegisterForm(FlaskForm):
@@ -38,13 +38,13 @@ class RegisterForm(FlaskForm):
 
 class ForgetPasswordForm(FlaskForm):
     """定义忘记密码表单"""
-    email = StringField('Email', validators=[DataRequired(), Length(1, 255), Email()])
-    submit = SubmitField('Send Email')
+    email = StringField('邮箱', validators=[DataRequired(), Length(1, 255), Email()])
+    submit = SubmitField('发送邮件')
 
 
 class ResetPasswordForm(FlaskForm):
     """定义忘记密码后重设密码表单"""
-    email = StringField('Email', validators=[DataRequired(), Length(1, 255), Email()])
-    password = PasswordField('Password', validators=[DataRequired(), Length(6, 128), EqualTo('password2')])
-    password2 = PasswordField('Confirm Password', validators=[DataRequired()])
-    submit = SubmitField('Reset Password')
+    email = StringField('邮箱', validators=[DataRequired(), Length(1, 255), Email()])
+    password = PasswordField('密码', validators=[DataRequired(), Length(6, 128), EqualTo('password2')])
+    password2 = PasswordField('确认密码', validators=[DataRequired()])
+    submit = SubmitField('重置')

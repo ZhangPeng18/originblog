@@ -18,13 +18,14 @@
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="post-heading">
                         <h1>{{ post.title }}</h1>
-                        <span class="meta">Posted by
+                        <span class="meta">
                             <a href="{{ url_for('user.index', username=post.author.username) }}">{{ post.author.name }}</a>
-                            on {{ moment(post.pub_time).format('YYYY/MM/DD, h:mm a') }}</span>
-                        <p class="meta">category: <a
+                            于
+                            {{ moment(post.pub_time).format('YYYY/MM/DD, h:mm a') }}发布</span>
+                        <p class="meta">分类: <a
                                 href="{{ url_for('blog.index', category=post.category) }}">{{ post.category }}</a>
                         </p>
-                        <p class="meta">Tags:
+                        <p class="meta">标签:
                             {% for tag in post.tags %}
                                 <a href="{{ url_for('blog.index', tag=tag) }}">{{ tag }}</a>{% endfor %}
                         </p>
@@ -45,48 +46,48 @@
             {{ post.html_content|safe }}
             </article>
 
-            <!-- dispaly share, copyright, donate and wechat information -->
-            {% if blog_meta.display_copyright %}
-            <div class="row">
-                <div class="col">
-                    <hr>
-                    <p><strong>{{ blog_meta.copyright_message }}</strong></p>
-                    <hr>
-                </div>
-            </div>
-            {% endif %}
-
-            {% if blog_meta.allow_share %}
-            <br>
-            <div class="row">
-                <div class="col">
-                    <div class="share-component" data-sites="weibo,wechat,douban,qq,facebook"></div>
-                </div>
-            </div>
-            <br>
-            {% endif %}
-
-            {% if blog_meta.allow_donate %}
-            <div class="row">
-                <div class="col">
-                    <p>{{ blog_meta.donate_message }}</p>
-                    <a id="btn-donate"><i class="fa fa-yen-sign"></i> | <i class="fa fa-dollar-sign"></i><br></a>
-                    <img id="img-donate" class="img-fluid" height="400" width="400" src="{{ blog_meta.donate_img_url }}" title="Donate" alt="donate qrcode">
-                </div>
-            </div>
-            {% endif %}
-
-            {% if blog_meta.dispaly_wechat %}
-            <div class="row">
-                <div class="col">
-                    <p>{{ blog_meta.wechat_message }} <i class="fab fa-weixin" aria-hidden="true"></i></p>
-                    <img class="img-fluid" height="400" width="400" src="{{ blog_meta.wechat_img_url }}" title="wechat" alt="wechat qrcode">
-                </div>
-            </div>
-            {% endif %}
-
+{#            <!-- dispaly share, copyright, donate and wechat information -->#}
+{#            {% if blog_meta.display_copyright %}#}
+{#            <div class="row">#}
+{#                <div class="col">#}
+{#                    <hr>#}
+{#                    <p><strong>{{ blog_meta.copyright_message }}</strong></p>#}
+{#                    <hr>#}
+{#                </div>#}
+{#            </div>#}
+{#            {% endif %}#}
+{##}
+{#            {% if blog_meta.allow_share %}#}
+{#            <br>#}
+{#            <div class="row">#}
+{#                <div class="col">#}
+{#                    <div class="share-component" data-sites="weibo,wechat,douban,qq,facebook"></div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <br>#}
+{#            {% endif %}#}
+{##}
+{#            {% if blog_meta.allow_donate %}#}
+{#            <div class="row">#}
+{#                <div class="col">#}
+{#                    <p>{{ blog_meta.donate_message }}</p>#}
+{#                    <a id="btn-donate"><i class="fa fa-yen-sign"></i> | <i class="fa fa-dollar-sign"></i><br></a>#}
+{#                    <img id="img-donate" class="img-fluid" height="400" width="400" src="{{ blog_meta.donate_img_url }}" title="Donate" alt="donate qrcode">#}
+{#                </div>#}
+{#            </div>#}
+{#            {% endif %}#}
+{##}
+{#            {% if blog_meta.dispaly_wechat %}#}
+{#            <div class="row">#}
+{#                <div class="col">#}
+{#                    <p>{{ blog_meta.wechat_message }} <i class="fab fa-weixin" aria-hidden="true"></i></p>#}
+{#                    <img class="img-fluid" height="400" width="400" src="{{ blog_meta.wechat_img_url }}" title="wechat" alt="wechat qrcode">#}
+{#                </div>#}
+{#            </div>#}
+{#            {% endif %}#}
+{##}
             <!-- comment form and list -->
-            {% include 'blog/_comment.html' %}
+{#            {% include 'blog/_comment.html' %}#}
 
         </div>
 
