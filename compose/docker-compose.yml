@@ -3,7 +3,7 @@ services:
   blog_app:
     container_name: blog
     restart: always
-    image: originblog:0.1
+    image: rokflyblog
     volumes:
       - blog_static:/usr/src/app/originblog/static
     env_file: docker.env

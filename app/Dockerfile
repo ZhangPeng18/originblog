@@ -1,8 +1,8 @@
-# MAINTAINER        Waynerv <ampedee@gmail.com>
-# DOCKER-VERSION    18.09.5-ce, build e8ff056
+# MAINTAINER        ZhangPeng <zhangpeng18@hotmail.com>
+# DOCKER-VERSION    19.03.2, build 6a30dfc
 
-FROM python:3.6.7-alpine3.8
-LABEL maintainer="ampedee@gmail.com"
+FROM python:3.6.9-alpine3.10
+LABEL maintainer="zhangpeng18@hotmail.com"
 
 RUN mkdir -p /usr/src/app  && \
     mkdir -p /var/log/gunicorn
