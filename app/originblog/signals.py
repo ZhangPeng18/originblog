@@ -4,9 +4,9 @@ from blinker import Namespace
 from flask import request, url_for
 from mongoengine import DoesNotExist
 
-from originblog.models import Tracker, PostStatistic
-from originblog.settings import BlogSettings
-from originblog.utils import submit_url_to_baidu
+from .models import Tracker, PostStatistic
+from .settings import BlogSettings
+from .utils import submit_url_to_baidu
 
 # 创建信号
 app_signals = Namespace()
@@ -46,17 +46,17 @@ def on_post_published(sender, post):
 
     文章发布后，将链接地址提交到百度站长平台，以被收录进搜索结果
     """
-    post_type = post.type
-    endpoints = {
-        'post': 'blog.show_post',
-        'page': 'blog.show_page'
-    }
-    post_url = url_for(endpoints[post_type], slug=post.slug, _external=True)
-    baidu_url = BlogSettings.SEARCH_ENGINE_SUBMIT_URLS['baidu']
-    if baidu_url:
-        # 异步发送网络请求
-        thr = Thread(target=submit_url_to_baidu, args=(baidu_url, post_url))
-        thr.start()
-        return thr
-    else:
-        print('Not ready to submit urls yet')
+    # post_type = post.type
+    # endpoints = {
+    #     'post': 'blog.show_post',
+    #     'page': 'blog.show_page'
+    # }
+    # post_url = url_for(endpoints[post_type], slug=post.slug, _external=True)
+    # baidu_url = BlogSettings.SEARCH_ENGINE_SUBMIT_URLS['baidu']
+    # if baidu_url:
+    #     # 异步发送网络请求
+    #     thr = Thread(target=submit_url_to_baidu, args=(baidu_url, post_url))
+    #     thr.start()
+    #     return thr
+    # else:
+    #     print('Not ready to submit urls yet')
