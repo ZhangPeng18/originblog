@@ -6,6 +6,6 @@
 # if os.path.exists(dotenv_path):
 #     load_dotenv(dotenv_path)
 
-from .originblog import create_app
+from originblog import create_app
 
 app = create_app('production')
